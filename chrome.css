@@ -15,6 +15,7 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       --transition-delay: var(--mod-autoexpand-animation_delay);
       --transition-delay-after: var(--mod-autoexpand-collapse_delay);
       --collapsed-tab-bar-width: var(--mod-autoexpand-collapsed_width);
+      --tab-alignment-offset: var(--mod-autoexpand-tab_alignment_offset, -2px);
       --win-radius: 6px;
       --linux-radius: 8px;
       --mac-radius: 10px;
@@ -446,7 +447,8 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
       }
 
       /* CENTER FAVICONS on collapsed state */
-      tab:not([zen-essential], [zen-glance-tab="true"]){ /*, [pinned]){  //superpins*/
+      tab:not([zen-glance-tab="true"]){ /* Includes essentials; excludes glance tabs. */
+        translate: var(--tab-alignment-offset) 0;
         .tab-icon-image{
           margin-left: 4px !important;
           margin-right: 4px !important;

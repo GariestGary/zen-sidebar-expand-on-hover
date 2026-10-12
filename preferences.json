@@ -32,6 +32,12 @@
         "defaultValue": "45px"
     },
     {
+        "property": "mod.autoexpand.tab_alignment_offset",
+        "label": "Horizontal tab alignment offset (negative = left)",
+        "type": "string",
+        "defaultValue": "-2px"
+    },
+    {
         "property": "mod.autoexpand.animation_duration",
         "label": "Expanding animation duration, in ms (default: 200ms)",
         "type": "string",
