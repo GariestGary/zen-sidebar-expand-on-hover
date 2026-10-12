@@ -938,3 +938,37 @@ not (-moz-bool-pref: "zen.view.use-single-toolbar") {
     }
   }
 }
+
+/* Animate the two tab details that previously changed instantly. This does
+ * not change Zen's native sidebar geometry or its page-content layout. */
+@media not (-moz-bool-pref: "zen.view.compact.enable-at-startup"),
+not (-moz-bool-pref: "zen.view.use-single-toolbar") {
+  #navigator-toolbox .tab-label-container {
+    transition:
+      opacity var(--transition-duration) ease-in-out var(--transition-delay-smooth),
+      transform var(--transition-duration) ease-in-out var(--transition-delay-smooth) !important;
+  }
+
+  #navigator-toolbox:not([zen-right-side="true"]):not(:is(
+    :hover, [has-popup-menu="true"], [movingtab], [flash-popup],
+    :has(toolbarbutton[open="true"]:not(#zen-sidepanel-button), #urlbar[open])
+  )) .tab-label-container {
+    transform: translateX(-8px);
+  }
+  #navigator-toolbox[zen-right-side="true"]:not(:is(
+    :hover, [has-popup-menu="true"], [movingtab], [flash-popup],
+    :has(toolbarbutton[open="true"]:not(#zen-sidepanel-button), #urlbar[open])
+  )) .tab-label-container {
+    transform: translateX(8px);
+  }
+  #navigator-toolbox:is(
+    :hover, [has-popup-menu="true"], [movingtab], [flash-popup],
+    :has(toolbarbutton[open="true"]:not(#zen-sidepanel-button), #urlbar[open])
+  ) .tab-label-container {
+    transform: translateX(0);
+  }
+
+  #navigator-toolbox tab:not([zen-essential]):not([pinned])[selected="true"] .tab-background {
+    transition: clip-path var(--transition-duration) ease-in-out var(--transition-delay-smooth) !important;
+  }
+}
